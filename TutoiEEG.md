@@ -1,10 +1,4 @@
-# From raw intracranial EEG to channel inspection
-
-This guide introduces the Neuralynx intracranial EEG (iEEG) data used in the GMNUM project. It is intended for someone new to iEEG, epilepsy research, and Neuralynx files.
-
-The goals are to understand the files and channel names, open signals and events safely, extract metadata without loading a whole recording, verify that channels are compatible, and interpret the channel-quality metrics produced by the project.
-
-An automated inspection flag is **not an automatic exclusion decision**. Epileptic activity is often unusual by definition and can resemble artifact in amplitude, frequency content, or spatial correlation. Review raw traces, anatomy, events, and clinical annotations before excluding a channel.
+# Tutorial iEEG
 
 ## 1. What is intracranial EEG?
 
@@ -15,7 +9,7 @@ iEEG records electrical activity from electrodes placed inside the skull. It has
 - **Microelectrodes:** smaller electrodes can record very local field potentials and, depending on the acquisition, action potentials.
 - **Scalp EEG:** electrodes on the scalp; these are not intracranial channels even when recorded alongside iEEG.
 
-The continuous signal in `.ncs` files is usually interpreted as a local field potential or iEEG signal. It is not the same as a sorted single-neuron spike train.
+The continuous signal in `.ncs` files is usually interpreted as a local field potential or iEEG signal. 
 
 ### Epilepsy terms used during inspection
 
@@ -109,12 +103,7 @@ A conventional NCS record contains:
 - number of valid samples; and
 - an array holding up to 512 signed 16-bit samples.
 
-Do not confuse these values:
-
-- **16 KiB** is the file-header size;
-- **512** is the maximum sample count in a conventional record.
-
-The final record may legitimately contain fewer than 512 valid samples. That alone does not prove corruption. Header fields can vary between Cheetah versions, so do not hard-code a fixed list of header strings.
+The final record may legitimately contain fewer than 512 valid samples. That alone does not prove corruption. Header fields can vary between Cheetah versions.
 
 ### Basic integrity check
 
@@ -140,7 +129,7 @@ This cannot detect every problem. Also verify that Neo parses the folder, expect
 
 ## 4. Reading Neuralynx data with Neo
 
-GMNUM uses Neo 0.14.5 in the `ieeg` Conda environment. Neo reads in chunks, which prevents high-rate recordings from filling memory.
+Neo 0.14.5 in the a Conda environment. Neo reads in chunks, which prevents high-rate recordings from filling memory.
 
 ```bash
 conda install -c conda-forge python-neo
