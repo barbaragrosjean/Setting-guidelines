@@ -1,4 +1,4 @@
-# Tutorial iEEG
+# Tutorial iEEG: Open and inspect
 
 ## 1. What is intracranial EEG?
 
@@ -376,7 +376,7 @@ for segment_index in range(reader.segment_count(0)):
         raise ValueError(f"Streams are not aligned in segment {segment_index}")
 ```
 
-## 6. GMNUM channel inspection
+## 6. Channel inspection
 
 `GMNUM/src/inspection.py` processes every subject-session in `num_new` and writes `channel_metrics_inspection.csv` in each session folder.
 
@@ -488,5 +488,3 @@ These are hypotheses, not diagnoses.
 8. Inspect PSD, line harmonics, and neighboring contacts.
 9. Use anatomy and clinical information, including seizure-onset annotations.
 10. Document whether the channel is kept, re-referenced, conditionally used, or excluded, with reviewer and reason.
-
-`GMNUM/src/exploration.ipynb` provides cohort summaries plus interactive raw-time and full-session PSD browsers.
